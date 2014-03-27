@@ -1,3 +1,5 @@
+// Forgot identity of partner.
+
 public class DoubleLL<E> {
 	private class Node<E> {
 		E data;
@@ -31,12 +33,23 @@ public class DoubleLL<E> {
 	private Node<E> current;
 
 	public void insert(E d) {
+		// Error-causing code: fixed
 		Node<E> n = new Node<E>(d);
-		if (current == null) {
-			current = n;
+		if (current == null) { // Empty list
+			current = n; // Make it the only element 
 		} else {
+			// This if clause and contained statements had to be added. 
+			if (current.prev != null) { // If it exists (perhaps we are on the edge of a list)
+				current.prev.next = n; // Then incorporate n's backwards link in one direction (from current.prev to n). The other link is below.
+				n.prev = current.prev; // This line was omitted. Issue: n's backwards link was forgotten; this is one part of the backwards link (n to current.prev).
+
+			}
+
+			// Bidirectional links between n and the next element, current
 			n.next = current;
 			current.prev = n;
+
+			// Current is now n
 			current = n;
 		}
 	}
