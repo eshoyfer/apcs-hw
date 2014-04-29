@@ -143,7 +143,7 @@ public class BST {
 			}
 		}
 
-		// Existing search function was not used becasue access was needed to trailing pointer
+		// Existing search function was not used because access was needed to trailing pointer
 
 		// At this point, curr is either null or represents the located node that will be deleted
 		// Regardless, curr will be treated as an object and will throw a NullPointerException in the former case
